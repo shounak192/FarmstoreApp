@@ -1,0 +1,60 @@
+<!-- Items Table Data -->
+<div class="table-responsive p-5">
+    <table class="table table-hover" id="table1" *ngIf="allFarmers.length > 0">
+        <thead class="thead-light">
+            <tr>
+                <th>Farmer ID</th>
+                <th>Farmer Name</th>
+                <th>Farmer Mobile</th>
+                <th>Farmer Email</th>
+                <th>Farmer Location</th>
+                <!-- <th>Actions</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of allFarmers">
+                <td>{{item.farmerId}}</td>
+                <td>{{item.farmerName}}</td>
+                <td>{{item.farmerMobile}}</td>
+                <td>{{item.farmerEmail}}</td>
+                <td>{{item.farmerLocation}}</td>
+                <!-- <td>
+                    <button type="button" class="btn btn-primary" (click)="delete(item.farmerId)">
+                        Delete</button>
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- <li class="list-group-item" *ngFor="let item of allFarmers">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <!-- Category -->
+                <!-- <div class="single category">
+                    <h3 class="side-title">Farmer </h3>
+                    <ul class="list-unstyled">
+                        <!-- <div style="font-family: Monospace">Item Id: <span class="pull-right">{{item.itemId}}</span>
+                        </div> -->
+                        <!-- <div style="font-family: Monospace">Farmer ID: <span
+                            class="pull-right">{{item.farmerId}}</span></div>
+                        <div style="font-family: Monospace">Farmer Name: <span
+                                class="pull-right">{{item.farmerName}}</span></div>
+                        <div style="font-family: Monospace">Mobile: <span
+                                class="pull-right">{{item.farmerMobile}}</span></div>
+                        <div style="font-family: Monospace">Location: <span
+                                class="pull-right">{{item.farmerLocation}}</span></div>
+                                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                                    <button type="button" class="btn btn-primary btn-lg px-4 gap-3" (click)="delete(item.farmerId)">Delete</button>
+                                    
+                                </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</li> --> 
+

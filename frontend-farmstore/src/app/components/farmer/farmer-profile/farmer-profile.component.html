@@ -1,0 +1,182 @@
+<div class="container">
+    <div class="main-body">
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center"> <img
+                                src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
+                                class="rounded-circle" width="150">
+                            <div class="mt-3">
+                                <h4>{{farmer.farmerName}}</h4>
+                                <p class="text-muted font-size-sm">@{{farmer.credential.userName}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">ID</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">{{farmer.farmerId}}</div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Name</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">{{farmer.farmerName}}</div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Email</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">{{farmer.farmerEmail}}</div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Mobile</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">{{farmer.farmerMobile}}</div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">City</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">{{farmer.farmerLocation}}</div>
+                        </div>
+                        <hr>
+                        <!-- <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Items Added</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary"> 15</div>
+                        </div> -->
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12"> <a class="btn btn-info " (click)="editFarmer = farmer"
+                                    data-toggle="modal" data-target="#farmerUpdateModal">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="farmerUpdateModal" tabindex="-1" role="dialog"
+                            aria-labelledby="farmerUpdateModalTitle" aria-hidden="true" data-backdrop="static"
+                            data-keyboard="false">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="farmerUpdateModalTitle">Edit</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                            (click)="onCloseHandled(editFarmer)">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form #updateform="ngForm" (ngSubmit)="updateFarmer(editFarmer, updateform)"
+                                            class="mx-auto w-75">
+                                            <div class="form-group">
+                                                <label for="farmerUname">Username<p class="req">*</p></label>
+                                                <input type="text" [(ngModel)]="editFarmer.credential.userName" required
+                                                    #farmerUname="ngModel" class="form-control"
+                                                    pattern="^[a-zA-Z0-9_]+$"
+                                                    [class.is-invalid]="farmerUname.invalid && farmerUname.touched"
+                                                    name="farmerUname">
+                                            </div>
+                                            <div *ngIf="farmerUname.invalid && (farmerUname.dirty || farmerUname.touched)"
+                                                class="text-danger">
+                                                <small *ngIf="farmerUname.errors?.required">Username is required</small>
+                                                <small *ngIf="farmerUname.errors?.pattern">Username can only have
+                                                    alphabets, numbers and underscore</small>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="farmerPassword">Password<p class="req">*</p></label>
+                                                <input type="password" [(ngModel)]="editFarmer.credential.password"
+                                                    required #farmerPassword="ngModel" class="form-control" minlength="6"
+                                                    name="farmerPassword">
+                                            </div>
+                                            <div *ngIf="farmerPassword.invalid && (farmerPassword.dirty || farmerPassword.touched)"
+                                                class="text-danger">
+                                                <small *ngIf="farmerPassword.errors?.required">Password is required</small>
+                                                <small *ngIf="farmerPassword.errors?.minlength">Password should be atleast 6 digits</small>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="farmerName">Name<p class="req">*</p></label>
+                                                <input type="text" [(ngModel)]="editFarmer.farmerName" required
+                                                    #farmerName="ngModel" class="form-control" minlength="3"
+                                                    [class.is-invalid]="farmerName.invalid && farmerName.touched"
+                                                    name="farmerName">
+                                            </div>
+                                            <div *ngIf="farmerName.invalid && (farmerName.dirty || farmerName.touched)"
+                                                class="text-danger">
+                                                <small *ngIf="farmerName.errors?.required">Name is required</small>
+                                                <small *ngIf="farmerName.errors?.minlength">Name should be atleast 3 characters</small>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="farmerMobile">Mobile<p class="req">*</p></label>
+                                                <input type="text" [(ngModel)]="editFarmer.farmerMobile" required
+                                                    pattern="[0-9]{10}" #farmerMobile="ngModel" class="form-control"
+                                                    [class.is-invalid]="farmerMobile.invalid && farmerMobile.touched"
+                                                    name="farmerMobile">
+                                            </div>
+                                            <div *ngIf="farmerMobile.invalid && (farmerMobile.dirty || farmerMobile.touched)"
+                                                class="text-danger">
+                                                <small *ngIf="farmerMobile.errors?.required">Mobile Number is required
+                                                </small>
+                                                <small *ngIf="farmerMobile.errors?.pattern">Mobile Number should be 10
+                                                    digits</small>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="farmerEmail">Email<p class="req">*</p></label>
+                                                <input type="text" [(ngModel)]="editFarmer.farmerEmail" required
+                                                    #farmerEmail="ngModel" class="form-control"
+                                                    pattern="^[A-Za-z0-9+_.-]+@(.+)$"
+                                                    [class.is-invalid]="farmerEmail.invalid && farmerEmail.touched"
+                                                    name="farmerEmail">
+                                            </div>
+                                            <div *ngIf="farmerEmail.invalid && (farmerEmail.dirty || farmerEmail.touched)"
+                                                class="text-danger">
+                                                <small *ngIf="farmerEmail.errors?.required">Email is required</small>
+                                                <small *ngIf="farmerEmail.errors?.pattern">Please enter a valid email</small>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="farmerLocation">City<p class="req">*</p></label>
+                                                <input type="text" [(ngModel)]="editFarmer.farmerLocation" required
+                                                    #farmerLocation="ngModel" class="form-control" minlength="3"
+                                                    name="farmerLocation">
+                                            </div>
+                                            <div *ngIf="farmerLocation.invalid && (farmerLocation.dirty || farmerLocation.touched)"
+                                                class="text-danger">
+                                                <small *ngIf="farmerLocation.errors?.required">City is required</small>
+                                                <small *ngIf="farmerLocation.errors?.minlength">City should have atleast 3
+                                                    characters</small>
+                                            </div>
+
+                                            <input type="submit" value="Update" [disabled]="(updateform.invalid)"
+                                                class="mt-2 btn btn-primary" />
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                            (click)="onCloseHandled(editFarmer)">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>

@@ -1,0 +1,28 @@
+.btn{
+    font-size: 18px;
+    color: rgb(202, 25, 25);
+    margin: 10px 0;
+    border: 2px solid rgb(26, 41, 182);
+    border-radius: 0;
+    padding: 10px 25px;
+    width:220px;
+    transition: all 0.5s ease 0s;
+}
+.btn:hover{
+    background: rgb(128, 21, 21);
+    border-color: #3f9cb5;
+    color: #ebdede;
+}
+
+div{
+    padding: 0px;
+    text-align: center;
+}
+
+th { text-align: center; }
+/* td { text-align: center; } */
+
+.x{
+    text-align: end;
+}
+

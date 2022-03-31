@@ -1,0 +1,67 @@
+<!-- <div class="container">
+    <div class="content mt-1" style="background: bisque">
+        <form #frm="ngForm" (ngSubmit)="updateDetails(supplier)">
+            <div class="card-header" style="background: gainsboro">
+                <h1 class="text-center">Update Profile</h1>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <i class='fas fa-id-card' style='font-size:20px'></i>
+                    <label for="supplierId" style="font-family:cursive">Supplier ID:*</label>
+                    <input disabled type="text" class="form-control mx-2" placeholder=supplier.supplierId
+                        id="supplierId" name="supplierId" [(ngModel)]=supplier.supplierId>
+                </div>
+
+            </div>
+
+            <div class="form-group row-cols-1">
+                <div class="col-12">
+                    <i class='fas fa-user' style='font-size:20px'></i>
+                    <label for="supplierName" style="font-family:cursive">Supplier Name:*</label>
+                    <input type="text" class="form-control mx-2" placeholder="Enter Supplier Name" id="supplierName"
+                        name="supplierName" [(ngModel)]=supplier.supplierName #supplierName="ngModel"
+                        pattern="^[a-zA-Z]+$" [class.is-invalid]="supplierName.invalid && supplierName.touched"
+                        required>
+                    <div *ngIf="supplierName.errors && (supplierName.invalid && supplierName.touched)">
+                        <small class="text-danger" *ngIf="supplierName.errors.required">Supplier Name cannot be
+                            empty</small>
+                        <small class="text-danger" *ngIf="supplierName.errors.pattern">Supplier Name can only contain
+                            alphabets</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row-cols-1">
+                <div class="col-lg-2">
+                    <i class='fas fa-mobile' style='font-size:20px'></i>
+                    <label for="supplierMobile" style="font-family:cursive">Mobile Number:*</label>
+                    <input type="number" class="form-control mx-2" placeholder="Mobile number" id="supplierMobile"
+                        name="supplierMobile" [(ngModel)]=supplier.supplierMobile #supplierMobile="ngModel"
+                        pattern="^[0-9]{10}$" [class.is-invalid]="supplierMobile.invalid && supplierMobile.touched"
+                        required>
+                    <div *ngIf="supplierMobile.errors && (supplierMobile.invalid && supplierMobile.touched)">
+                        <small class="text-danger" *ngIf="supplierMobile.errors.required">Supplier Mobile cannot be
+                            empty</small>
+                        <small class="text-danger" *ngIf="supplierMobile.errors.pattern">Mobile Number must be 10
+                            digits</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mx-auto">
+                <div class="col-sm-3 form-group">
+                    <i class='fas fa-city' style='font-size:18px'></i>
+                    <label for="supplierLocation" style="font-family:cursive">Location:</label>
+                    <select formControlName="supplierLocation" class="form-control mx-2">
+                        <option disabled>Select a Location</option>
+                        <option>Choose Location</option>
+                        <option *ngFor="let loc of location">{{loc}}</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit" [disabled]="!frm.valid">Submit</button>
+        </form>
+    </div>
+</div>
+
+<div class="text-center" style="font-size: medium;" *ngIf="!validDetails">{{errorResponse}}</div> -->

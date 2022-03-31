@@ -1,0 +1,90 @@
+<ng-container *ngIf="items.length ==0">
+  <div class="container">
+    <div class="center">
+      <img
+        src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
+        alt="">
+      <h4>Your cart is empty!</h4>
+      <button (click)="navToItems()" class="btn btn-primary">Shop Now</button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="items.length !=0">
+  <div class="container">
+    <div class="card-table">
+      <div class="cart-product">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th>Sr.No</th>
+              <th>Item Name</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Delete</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of items; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{item.itemName}}</td>
+              <td style="width: 12%;">{{item.itemCategory}}</td>
+              <td style="width: 12%;">{{item.itemPrice}}</td>
+              <td style="width: 12%;">
+                <button type="button" class="btn" (click)="inc(item)"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                <span>{{item.itemQuantity}}</span>
+                <button type="button" class="btn" (click)="dec(item)"><i class="fa fa-minus-circle" aria-hidden="true"></i></button>
+              </td>
+              <td style="width: 12%;" [(ngModel)]="total" name="total" ngDefaultControl>{{total[i]}}</td>
+
+              <td>
+                <button (click)="clearCartItem(item)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5"></td>
+              <td><button (click)="emptycart()" class="btn btn-danger">Empty Cart</button></td>
+              <td><button (click)="navToItems()" class="btn btn-primary">Shop More</button></td>
+              <td><strong>Grand Total : {{ grandTotal | currency:'INR' }}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<!-- <div class="container mt-4" style="background-color: white;" *ngFor="let item of items">
+
+
+    <div class="d-flex justify-content-between">
+  
+      <div class="col">
+        <h5 style="color: cornflowerblue;">Name:</h5>
+        <p>{{item.itemName}}
+        </p>
+  
+      </div>
+      <div class="col">
+        <h5 style="color: cornflowerblue;">Category: </h5>
+        <p>{{item.itemCategory}}
+        </p>
+  
+      </div>
+      <div class="col">
+        <h5 style="color: cornflowerblue;">Price:$</h5>
+        <p>{{item.itemPrice}}
+        </p>
+        <div>
+          <button class="btn btn-danger" (click)='clearCartItem(item.itemId)'>Delete</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+<div style="text-align: center;">
+  <button type="button" *ngIf="items.length !=0" class="btn-primary btn-rounded btn-lg" (click)="placeOrder()">
+    PLACE ORDER</button>
+</div>

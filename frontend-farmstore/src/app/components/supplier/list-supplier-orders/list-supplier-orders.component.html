@@ -1,0 +1,41 @@
+<div *ngIf="allOrders.length>0">
+    <div class="container mt-4" style="background-color: white;" *ngFor=" let order of allOrders">
+
+        <h3 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
+            Order ID: {{order.orderId}}</h3>
+        <div class="container mt-4">
+            <div class="d-flex justify-content-between">
+
+                <div class="col">
+                    <h5 style="color: cornflowerblue;"> Location:</h5>
+
+                    <p>{{supplier.supplierLocation}}
+                    </p>
+                </div>
+                <div class="col">
+                    <h5 style="color: cornflowerblue;">Quantity: </h5>
+                    <p>{{order.quantity}}
+                    </p>
+
+                </div>
+                <div class="col">
+                    <h5 style="color: cornflowerblue;">Total Cost: </h5>
+                    <p>{{order.price}}
+                    </p>
+
+                </div>
+                <div class="col">
+                    <h5 style="color: cornflowerblue;">Order Date: </h5>
+                    <p>{{order.orderDate | date:'dd-MM-yyyy' }}
+                    </p>
+
+                </div>
+            </div>
+            <button class="btn btn-danger" (click)='viewOrderItems(order.orderId)'>View Order
+                Details</button>&nbsp;&nbsp;
+            <button (click)="delete(order)" class="btn btn-danger" value="Delete">Delete Order</button>
+        </div>
+        <hr>
+    </div>
+</div>
+<div class="text-muted" *ngIf="allOrders.length==0">No Orders Yet!</div>

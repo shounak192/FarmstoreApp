@@ -1,0 +1,88 @@
+<!-- Items Table Data -->
+<div class="table-responsive p-5">
+    <table class="table table-hover" id="table1" *ngIf="items.length > 0">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Verified</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of items">
+                <td>{{item.itemId}}</td>
+                <td>{{item.itemName}}</td>
+                <td>{{item.itemCategory}}</td>
+                <td>{{item.itemPrice}}</td>
+                <td>{{item.itemQuantity}}</td>
+                <td>{{item.verified | yesNo}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" (click)="editItem = item" data-toggle="modal"
+                        data-target="#itemUpdateModal">
+                        <i class="fa fa-fw fa-sliders"></i></button>
+                    <button type="button" class="btn btn-danger" (click)="deleteItem(item.itemId)"><i
+                            class="fa fa-fw fa-trash"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-muted" *ngIf="items.length == 0">You have not added any items! <a href="/add-item" class="link-primary">Click here to add a new item.</a></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="itemUpdateModal" tabindex="-1" role="dialog" aria-labelledby="itemUpdateModalTitle"
+    aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="itemUpdateModalTitle">Update Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="onCloseHandled(editItem)">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #updateform="ngForm" (ngSubmit)="updateItem(editItem, updateform)" class="mx-auto w-75">
+                    <div class="form-group">
+                        <label for="itemName">Item Name<p class="req">*</p></label>
+                        <input type="text" [(ngModel)]="editItem.itemName" required #itemName="ngModel"
+                            class="form-control" name="itemName" placeholder="Enter item name">
+                    </div>
+                    <div *ngIf="itemName.invalid && (itemName.dirty || itemName.touched)" class="text-danger">
+                        <div *ngIf="itemName.errors?.required">Name is required</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemPrice">Item Price<p class="req">*</p></label>
+                        <input type="number" [(ngModel)]="editItem.itemPrice" required min="1" #itemPrice="ngModel"
+                            class="form-control" name="itemPrice" placeholder="Enter item price">
+                    </div>
+                    <div *ngIf="itemPrice.invalid && (itemPrice.dirty || itemPrice.touched)" class="text-danger">
+                        <div *ngIf="itemPrice.errors?.required">Price is required</div>
+                        <div *ngIf="itemPrice.value <= 0">Price must be greater than 0</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemQuantity">Item Quantity<p class="req">*</p></label>
+                        <input type="number" [(ngModel)]="editItem.itemQuantity" required min="1"
+                            #itemQuantity="ngModel" class="form-control" name="itemQuantity"
+                            placeholder="Enter item quantity">
+                    </div>
+                    <div *ngIf="itemQuantity.invalid && (itemQuantity.dirty || itemQuantity.touched)"
+                        class="text-danger">
+                        <div *ngIf="itemQuantity.errors?.required">Quantity is required</div>
+                        <div *ngIf="itemQuantity.value <= 0">Quantity must be greater than 0</div>
+                    </div>
+
+                    <input type="submit" value="Update" [disabled]="(updateform.invalid)" class="mt-2 btn btn-primary" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onCloseHandled(editItem)">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

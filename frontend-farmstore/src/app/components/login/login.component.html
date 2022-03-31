@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="login.component.css">
+
+<!-- <div class="text-center" style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                         font-size:xx-large; font-weight:bolder; font-stretch:extra-expanded;">Welcome to FARMSTORE.
+</div> -->
+
+<div>
+    <div class="container">
+        <div class="card login-form">
+            <div class="card-body">
+                <h3 class="card-title text-center"> Login </h3>
+                <div class="card-text">
+                    <form (ngSubmit)="login()">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1"> Enter Username</label>
+                            <input type="text" class="form-control form-control-sm" id="username" name="username"
+                                required minlength='3' maxlength='20' #myUserName="ngModel"
+                                [(ngModel)]="credential.userName">
+                            <span *ngIf="myUserName.touched && myUserName.errors?.required" class="text-danger small">
+                                User Name is mandatory.
+                            </span>
+                            <span *ngIf="myUserName.touched && myUserName.errors?.minlength" class="text-danger small">
+                                User Name should be min of 3 characters.
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="password">Enter Password </label>
+                            <input type="password" class="form-control form-control-sm" id="password" name="pwd"
+                                required required minlength='3' maxlength='20' #myPassword="ngModel"
+                                [(ngModel)]="credential.password">
+                            <span *ngIf="myPassword.touched && myPassword.errors?.required" class="text-danger small">
+                                Password is mandatory.
+                            </span>
+                            <span *ngIf="myPassword.touched && myPassword.errors?.minlength" class="text-danger small">
+                                Password should be min of 3 characters.
+                            </span>
+
+                        </div>
+                        <div class="form-group">
+                            <p>Login as:</p>
+                              <input type="radio" id="admin" name="usertype" [(ngModel)]="credential.userType"
+                                value="ADMIN">
+                              <label for="admin">Admin</label>
+                              <input type="radio" id="Farmer" name="usertype" [(ngModel)]="credential.userType"
+                                value="FARMER">
+                              <label for="farmer">Farmer</label>
+                              <input type="radio" id="Supplier" name="usertype" [(ngModel)]="credential.userType"
+                                value="SUPPLIER">
+                              <label for="supplier">Supplier</label>
+                        </div>
+                        
+
+
+                        <button type="submit" class="btn btn-primary btn-block"> Login </button>
+
+                        <div class="Register">
+                            Don't have an account? <a href="/register"> Register Here!</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    

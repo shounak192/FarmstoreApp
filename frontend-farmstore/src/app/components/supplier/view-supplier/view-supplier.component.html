@@ -1,0 +1,183 @@
+<div class="container">
+    <div class="main-body">
+        <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center"> <img
+                                src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
+                                class="rounded-circle" width="150">
+                            <div class="mt-3">
+                                <h4>{{supplier.supplierName}}</h4>
+                                <p class="text-muted font-size-sm">@{{supplier.credential.userName}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">ID</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">{{supplier.supplierId}}</div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Name</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">{{supplier.supplierName}}</div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Email</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">{{supplier.supplierEmail}}</div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Mobile</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">{{supplier.supplierMobile}}</div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">City</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">{{supplier.supplierLocation}}</div>
+                        </div>
+                        <hr>
+                        <!-- <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Items Added</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary"> 15</div>
+                        </div> -->
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12"> <a class="btn btn-info"
+                                data-toggle="modal" data-target="#supplierUpdateModal" (click)="editSupplier = supplier">
+                              Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="supplierUpdateModal" tabindex="-1" role="dialog"
+                            aria-labelledby="supplierUpdateModalTitle" aria-hidden="true" data-backdrop="static"
+                            data-keyboard="false">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="supplierUpdateModalTitle">Edit</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                            (click)="onCloseHandled(editSupplier)">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form #updateform="ngForm" (ngSubmit)="updateSupplier(editSupplier)"
+                                            class="mx-auto w-75">
+                                            <div class="form-group">
+                                                <label for="supplierUname">Username<p class="req">*</p></label>
+                                                <input type="text" [(ngModel)]="editSupplier.credential.userName" required
+                                                    #supplierUname="ngModel" class="form-control"
+                                                    pattern="^[a-zA-Z0-9_]+$"
+                                                    [class.is-invalid]="supplierUname.invalid && supplierUname.touched"
+                                                    name="supplierUname">
+                                            </div>
+                                            <div *ngIf="supplierUname.invalid && (supplierUname.dirty || supplierUname.touched)"
+                                                class="text-danger">
+                                                <small *ngIf="supplierUname.errors?.required">Username is required</small>
+                                                <small *ngIf="supplierUname.errors?.pattern">Username can only have
+                                                    alphabets, numbers and underscore</small>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="supplierPassword">Password<p class="req">*</p></label>
+                                                <input type="password" [(ngModel)]="editSupplier.credential.password"
+                                                    required #supplierPassword="ngModel" class="form-control" minlength="6"
+                                                    name="supplierPassword">
+                                            </div>
+                                            <div *ngIf="supplierPassword.invalid && (supplierPassword.dirty || supplierPassword.touched)"
+                                                class="text-danger">
+                                                <small *ngIf="supplierPassword.errors?.required">Password is required</small>
+                                                <small *ngIf="supplierPassword.errors?.minlength">Password should be atleast 6 digits</small>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="supplierName">Name<p class="req">*</p></label>
+                                                <input type="text" [(ngModel)]="editSupplier.supplierName" required
+                                                    #supplierName="ngModel" class="form-control" minlength="3"
+                                                    [class.is-invalid]="supplierName.invalid && supplierName.touched"
+                                                    name="supplierName">
+                                            </div>
+                                            <div *ngIf="supplierName.invalid && (supplierName.dirty || supplierName.touched)"
+                                                class="text-danger">
+                                                <small *ngIf="supplierName.errors?.required">Name is required</small>
+                                                <small *ngIf="supplierName.errors?.minlength">Name should be atleast 3 characters</small>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="supplierMobile">Mobile<p class="req">*</p></label>
+                                                <input type="text" [(ngModel)]="editSupplier.supplierMobile" required
+                                                    pattern="[0-9]{10}" #supplierMobile="ngModel" class="form-control"
+                                                    [class.is-invalid]="supplierMobile.invalid && supplierMobile.touched"
+                                                    name="supplierMobile">
+                                            </div>
+                                            <div *ngIf="supplierMobile.invalid && (supplierMobile.dirty || supplierMobile.touched)"
+                                                class="text-danger">
+                                                <small *ngIf="supplierMobile.errors?.required">Mobile Number is required
+                                                </small>
+                                                <small *ngIf="supplierMobile.errors?.pattern">Mobile Number should be 10
+                                                    digits</small>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="supplierEmail">Email<p class="req">*</p></label>
+                                                <input type="text" [(ngModel)]="editSupplier.supplierEmail" required
+                                                    #supplierEmail="ngModel" class="form-control"
+                                                    pattern="^[A-Za-z0-9+_.-]+@(.+)$"
+                                                    [class.is-invalid]="supplierEmail.invalid && supplierEmail.touched"
+                                                    name="supplierEmail">
+                                            </div>
+                                            <div *ngIf="supplierEmail.invalid && (supplierEmail.dirty || supplierEmail.touched)"
+                                                class="text-danger">
+                                                <small *ngIf="supplierEmail.errors?.required">Email is required</small>
+                                                <small *ngIf="supplierEmail.errors?.pattern">Please enter a valid email</small>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="supplierLocation">City<p class="req">*</p></label>
+                                                <input type="text" [(ngModel)]="editSupplier.supplierLocation" required
+                                                    #supplierLocation="ngModel" class="form-control" minlength="3"
+                                                    name="supplierLocation">
+                                            </div>
+                                            <div *ngIf="supplierLocation.invalid && (supplierLocation.dirty || supplierLocation.touched)"
+                                                class="text-danger">
+                                                <small *ngIf="supplierLocation.errors?.required">City is required</small>
+                                                <small *ngIf="supplierLocation.errors?.minlength">City should have atleast 3
+                                                    characters</small>
+                                            </div>
+
+                                            <input type="submit" value="Update" [disabled]="(updateform.invalid)"
+                                                class="mt-2 btn btn-primary" />
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                            (click)="onCloseHandled(editSupplier)">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>

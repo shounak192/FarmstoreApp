@@ -1,0 +1,27 @@
+    <!-- Items Table Data -->
+<div class="table-responsive p-5">
+  <table class="table table-hover" id="table1" *ngIf="items.length > 0">
+      <thead class="thead-light">
+          <tr>
+              <th>Item ID</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Orders</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let item of items">
+              <td>{{item.itemId}}</td>
+              <td>{{item.itemName}}</td>
+              <td>{{item.itemCategory}}</td>
+              <td>{{item.itemPrice}}</td>
+              <td>
+                  <button type="button" class="btn btn-primary" (click)="viewOrdersByItemId(item.itemId)">
+                      View</button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+  <div class="text-muted" *ngIf="items.length == 0">You have not added any items! <a href="/add-item" class="link-primary">Click here to add a new item.</a></div>
+</div>

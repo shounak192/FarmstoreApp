@@ -1,0 +1,177 @@
+<body>
+  <div style="background-color:aqua">
+    <div class="mx-auto regform" style="width: 800px;">
+      <nav>
+        <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+          <button class="nav-link" [ngClass]="{'active': isFarmer}" id="nav-farmer-tab" data-bs-toggle="tab"
+            data-bs-target="#nav-farmer" type="button" role="tab" aria-controls="nav-farmer" aria-selected="true"
+            (click)="setFarmer()">Farmer</button>
+          <button class="nav-link" [ngClass]="{'active': !isFarmer}" id="nav-supplier-tab" data-bs-toggle="tab"
+            data-bs-target="#nav-supplier" type="button" role="tab" aria-controls="nav-supplier" aria-selected="false"
+            (click)="setSupplier()">Supplier</button>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-farmer" role="tabpanel" aria-labelledby="nav-farmer-tab">
+
+          <form #form="ngForm" (ngSubmit)="registerFarmer()" class="mx-auto w-75" *ngIf="isFarmer">
+            <div class="user-details">
+              <div class="form-group">
+                <label>Username<span class="text-danger">*</span> </label>
+                <input type="text" name="farmerUname" [(ngModel)]="farmer.credential.userName"
+                  required #farmerUname="ngModel" pattern="^[a-zA-Z0-9_]+$"
+                  [class.is-invalid]="farmerUname.invalid && farmerUname.touched" class="form-control">
+                <div *ngIf="farmerUname.errors && (farmerUname.invalid && farmerUname.touched)">
+                  <small class="text-danger" *ngIf="farmerUname.errors.required">Username is required</small>
+                  <small class="text-danger" *ngIf="farmerUname.errors.pattern">Username can have only alphabets,
+                    numbers
+                    and underscore</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Password<span class="text-danger">*</span></label>
+                <input type="password" name="fpassword"
+                  [(ngModel)]="farmer.credential.password" required minlength="6"
+                  [class.is-invalid]="fpassword.invalid && fpassword.touched" #fpassword="ngModel" class="form-control">
+                <div *ngIf="fpassword.errors && (fpassword.invalid && fpassword.touched)">
+                  <small class="text-danger" *ngIf="fpassword.errors.required">Password is required</small>
+                  <small class="text-danger" *ngIf="fpassword.errors.minlength">Password must have minimum 6
+                    characters</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Name<span class="text-danger">*</span></label>
+                <input type="text" name="farmerName" [(ngModel)]="farmer.farmerName" required
+                  pattern="^[a-zA-Z]+$" [class.is-invalid]="farmerName.invalid && farmerName.touched" #farmerName="ngModel"
+                  class="form-control">
+                <div *ngIf="farmerName.errors && (farmerName.invalid && farmerName.touched)">
+                  <small class="text-danger" *ngIf="farmerName.errors.required">Name is required</small>
+                  <small class="text-danger" *ngIf="farmerName.errors.pattern">Name can have only alphabets</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Mobile<span class="text-danger">*</span></label>
+                <input type="text" required pattern="[0-9]{10}" name="farmerMobile"
+                  [(ngModel)]="farmer.farmerMobile" [class.is-invalid]="farmerMobile.invalid && farmerMobile.touched"
+                  #farmerMobile="ngModel" class="form-control">
+                <div *ngIf="farmerMobile.errors && (farmerMobile.invalid && farmerMobile.touched)">
+                  <small class="text-danger" *ngIf="farmerMobile.errors.required">Mobile cannot be empty</small>
+                  <small class="text-danger" *ngIf="farmerMobile.errors.pattern">Mobile Number can have only 10
+                    digits</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Email<span class="text-danger">*</span></label>
+                <input type="text" required pattern="^[A-Za-z0-9+_.-]+@(.+)$"
+                  name="farmerEmail" [(ngModel)]="farmer.farmerEmail"
+                  [class.is-invalid]="farmerEmail.invalid && farmerEmail.touched" #farmerEmail="ngModel"
+                  class="form-control">
+                <div *ngIf="farmerEmail.errors && (farmerEmail.invalid && farmerEmail.touched)">
+                  <small class="text-danger" *ngIf="farmerEmail.errors.required">Email cannot be empty</small>
+                  <small class="text-danger" *ngIf="farmerEmail.errors.pattern">Please enter a valid email</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>City<span class="text-danger">*</span></label>
+                <input type="text" name="farmerCity" [(ngModel)]="farmer.farmerLocation"
+                  required minlength="3" [class.is-invalid]="farmerCity.invalid && farmerCity.touched"
+                  #farmerCity="ngModel" class="form-control">
+                <div *ngIf="farmerCity.errors && (farmerCity.invalid && farmerCity.touched)">
+                  <small class="text-danger" *ngIf="farmerCity.errors.required">Enter a City</small>
+                  <small class="text-danger" *ngIf="farmerCity.errors.minlength">City should have minimum 3
+                    characters</small>
+                </div>
+              </div>
+              <div class="button">
+                <input type="submit" [disabled]="!form.valid" class="mt-2 mb-3 btn btn-success mx-auto"
+                  value="Register">
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="tab-pane fade show active" id="nav-supplier" role="tabpanel" aria-labelledby="nav-supplier-tab">
+
+          <form #form="ngForm" (ngSubmit)="registerSupplier()" class="mx-auto w-75" *ngIf="!isFarmer">
+            <div class="user-details">
+              <div class="form-group">
+                <label>Username<span class="text-danger">*</span> </label>
+                <input type="text" name="suppUname" [(ngModel)]="supplier.credential.userName"
+                  required #suppUname="ngModel" pattern="^[a-zA-Z0-9_]+$"
+                  [class.is-invalid]="suppUname.invalid && suppUname.touched" class="form-control">
+                <div *ngIf="suppUname.errors && (suppUname.invalid && suppUname.touched)">
+                  <small class="text-danger" *ngIf="suppUname.errors.required">Username cannot be empty</small>
+                  <small class="text-danger" *ngIf="suppUname.errors.pattern">Username can have only alphabets, numbers
+                    and underscore</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Password<span class="text-danger">*</span></label>
+                <input type="password" name="spass" [(ngModel)]="supplier.credential.password"
+                  required minlength="6" [class.is-invalid]="spass.invalid && spass.touched" #spass="ngModel"
+                  class="form-control">
+                <div *ngIf="spass.errors && (spass.invalid && spass.touched)">
+                  <small class="text-danger" *ngIf="spass.errors.required">Password is required</small>
+                  <small class="text-danger" *ngIf="spass.errors.minlength">Password must have minimum 6
+                    characters</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Name<span class="text-danger">*</span></label>
+                <input type="text" name="supName" [(ngModel)]="supplier.supplierName" required
+                pattern="^[a-zA-Z]+$" [class.is-invalid]="supName.invalid && supName.touched" #supName="ngModel"
+                  class="form-control">
+                <div *ngIf="supName.errors && (supName.invalid && supName.touched)">
+                  <small class="text-danger" *ngIf="supName.errors.required">Name cannot be empty</small>
+                  <small class="text-danger" *ngIf="supName.errors.minlength">Name can have only alphabets</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Mobile<span class="text-danger">*</span></label>
+                <input type="text" required pattern="[0-9]{10}" name="supMob"
+                  [(ngModel)]="supplier.supplierMobile" [class.is-invalid]="supMob.invalid && supMob.touched"
+                  #supMob="ngModel" class="form-control">
+                <div *ngIf="supMob.errors && (supMob.invalid && supMob.touched)">
+                  <small class="text-danger" *ngIf="supMob.errors.required">Mobile is required</small>
+                  <small class="text-danger" *ngIf="supMob.errors.pattern">Mobile Number can have only 10 digits</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Email<span class="text-danger">*</span></label>
+                <input type="text" required
+                  pattern="^[A-Za-z0-9+_.-]+@(.+)$" name="supplierEmail" [(ngModel)]="supplier.supplierEmail"
+                  [class.is-invalid]="supplierEmail.invalid && supplierEmail.touched" #supplierEmail="ngModel"
+                  class="form-control">
+                <div *ngIf="supplierEmail.errors && (supplierEmail.invalid && supplierEmail.touched)">
+                  <small class="text-danger" *ngIf="supplierEmail.errors.required">Email cannot be empty</small>
+                  <small class="text-danger" *ngIf="supplierEmail.errors.pattern">Please enter a valid email</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>City<span class="text-danger">*</span></label>
+                <input type="text" name="supCity" [(ngModel)]="supplier.supplierLocation"
+                  required minlength="3" [class.is-invalid]="supCity.invalid && supCity.touched" #supCity="ngModel"
+                  class="form-control">
+                <div *ngIf="supCity.errors && (supCity.invalid && supCity.touched)">
+                  <small class="text-danger" *ngIf="supCity.errors.required">City cannot be empty</small>
+                  <small class="text-danger" *ngIf="supCity.errors.minlength">City should have minimum 3
+                    characters</small>
+                </div>
+              </div>
+              <div class="button">
+                <input type="submit" [disabled]="!form.valid" class="mt-2 mb-3 btn btn-success mx-auto"
+                  value="Register">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+
+
+
+
+<router-outlet></router-outlet>

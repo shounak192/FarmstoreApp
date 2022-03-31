@@ -1,0 +1,32 @@
+.navbar-light .navbar-nav .nav-link {
+  color: rgba(0,0,0,.5);
+}
+
+.form-control {
+  border-radius: 3px;
+  width: 500px;
+  margin-left: 20px;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  font-weight: bold;
+}
+
+.navbar-nav .btn {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+nav {
+  border-bottom: 1px solid #ddd;
+  opacity: 0.95;
+}
+
+@media (max-width: 992px) {
+  .nav-item .btn {
+      margin: .5rem 0 .5rem 0;
+  }
+}
+ 
+
+  

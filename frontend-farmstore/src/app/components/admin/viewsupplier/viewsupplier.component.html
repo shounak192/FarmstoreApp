@@ -1,0 +1,63 @@
+<div class="table-responsive p-5">
+    <table class="table table-hover" id="table1" *ngIf="allSuppliers.length > 0">
+        <thead class="thead-light">
+            <tr>
+                <th>Farmer ID</th>
+                <th>Farmer Name</th>
+                <th>Farmer Mobile</th>
+                <th>Farmer Email</th>
+                <th>Farmer Location</th>
+                <!-- <th>Actions</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of allSuppliers">
+                <td>{{item.supplierId}}</td>
+                <td>{{item.supplierName}}</td>
+                <td>{{item.supplierMobile}}</td>
+                <td>{{item.supplierEmail}}</td>
+                <td>{{item.supplierLocation}}</td>
+                <!-- <td>
+                    <button type="button" class="btn btn-primary" (click)="delete(item.supplierId)">
+                        Delete</button>
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- <li class="list-group-item" *ngFor="let item of allSuppliers">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="single category">
+                    <h3 class="side-title">Supplier </h3>
+                    <ul class="list-unstyled"> -->
+                        <!-- <div style="font-family: Monospace">Item Id: <span class="pull-right">{{item.itemId}}</span>
+                        </div> -->
+                        <!-- <div style="font-family: Monospace">Supplier ID: <span
+                            class="pull-right">{{item.supplierId}}</span></div>
+                        <div style="font-family: Monospace">Supplier Name: <span
+                                class="pull-right">{{item.supplierName}}</span></div>
+                        <div style="font-family: Monospace">Mobile: <span
+                                class="pull-right">{{item.supplierMobile}}</span></div>
+                        <div style="font-family: Monospace">Location: <span
+                                class="pull-right">{{item.supplierLocation}}</span></div>
+                                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                                    <button type="button" class="btn btn-primary btn-lg px-4 gap-3" (click)="delete(item.supplierId)">Delete</button>
+                                    
+                                </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</li> -->
+
+
+
+
+
+
+        
