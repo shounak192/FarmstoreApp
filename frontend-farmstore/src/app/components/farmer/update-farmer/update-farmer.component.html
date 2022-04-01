@@ -1,0 +1,66 @@
+<div class="container">
+  <h2 style="font-family: fantasy;">Update Farmer</h2>
+  <form #updatefarmerform="ngForm" (ngSubmit)="updateFarmer()">
+
+    <div class="form-group">
+      <label for="farmerName">Farmer Name:</label>
+      <input type="text" class="form-control" required [(ngModel)]="farmer.farmerName" name="farmerName" id="farmerName"
+        #farmerName="ngModel" pattern="^[a-zA-Z]+$" [class.is-invalid]="farmerName.invalid && farmerName.touched">
+      <div *ngIf="farmerName.errors && (farmerName.invalid && farmerName.touched)">
+        <small class="text-danger" *ngIf="farmerName.errors.required">Farmer Name cannot be
+          empty</small>
+        <small class="text-danger" *ngIf="farmerName.errors.pattern">Farmer Name can only contain
+          alphabets</small>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="farmerMobile">Farmer Mobile:</label>
+      <input type="text" class="form-control" required [(ngModel)]="farmer.farmerMobile" name="farmerMobile"
+        id="farmerMobile" #farmerMobile="ngModel" pattern="^[0-9]{10}$"
+        [class.is-invalid]="farmerMobile.invalid && farmerMobile.touched">
+      <div *ngIf="farmerMobile.errors && (farmerMobile.invalid && farmerMobile.touched)">
+        <small class="text-danger" *ngIf="farmerMobile.errors.required">Farmer Mobile cannot be
+          empty</small>
+        <small class="text-danger" *ngIf="farmerMobile.errors.pattern">Mobile Number must be 10
+          digits</small>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="farmerLocation">Farmer Location:</label>
+      <input type="text" class="form-control" required [(ngModel)]="farmer.farmerLocation" name="farmerLocation"
+        id="farmerLocation" #farmerName="ngModel" pattern="^[a-zA-Z]+$"
+        [class.is-invalid]="farmerLocation.invalid && farmerLocation.touched" #farmerLocation="ngModel" required>
+      <div *ngIf="farmerLocation.errors && (farmerLocation.invalid && farmerLocation.touched)">
+        <small class="text-danger" *ngIf="farmerLocation.errors.required">Farmer Location cannot be
+          empty</small>
+      </div>
+
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="username">Farmer username:</label>
+      <!-- Use ng model to implement two way binding -->
+      <input type="text" class="form-control" required [(ngModel)]="farmer.credential.userName" name="username"
+        id="username" disabled>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="password">Farmer Password:</label>
+      <input type="text" class="form-control" required [(ngModel)]="farmer.credential.password" name="password"
+        id="password" minlength='3' maxlength='20' #password="ngModel" required>
+      <span *ngIf="password.touched && password.errors?.required" class="text-danger small">
+        Password is mandatory.
+      </span>
+
+      <span *ngIf="password.touched && password.errors?.minlength" class="text-danger small">
+        Password should be min of 3 characters.
+      </span>
+    </div>
+    <br><br>
+    <button type="submit" class="btn btn-success">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-secondary" (click)="navigateToFarmerHome()"
+      style="background-color: rgb(31, 29, 29)">Back</button>
+  </form>
+</div>

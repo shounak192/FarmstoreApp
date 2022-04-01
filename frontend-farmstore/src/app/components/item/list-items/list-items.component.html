@@ -1,0 +1,62 @@
+<div class="mt-5 mb-5 w-75 mx-auto">
+  <!-- <div class="form-group w-50">
+    <label for="search" class="text-secondary">Search</label>
+    <input type="text" name="search" placeholder="Search for items, location..." [(ngModel)]="searchKey"
+      class="form-control text-secondary" />
+  </div> -->
+  <!-- <div class="form-group w-25">
+    <label for="itemCategory" class="text-secondary">Filter By Category</label>
+    <select class="form-control" id="itemCategory" name="itemCategory" #category="ngModel" [(ngModel)]="itemCategory">
+      <option value="" selected>Choose a category</option>
+      <option value="Dairy">Dairy</option>
+      <option value="Fruits">Fruits</option>
+      <option value="Grains">Grains</option>
+      <option value="Vegetables">Vegetables</option>
+    </select>
+  </div> -->
+</div>
+<div class="container">
+  <div class="card-deck mb-3 text-center" *ngIf="(items | search:searchKey||itemCategory) as result">
+    <div class="card mb-4 box-shadow" *ngFor="let item of result | search:searchKey||itemCategory">
+      <!-- (change)="hasResult=((items.length != 0)?true:false)" -->
+      <div class="card-header" *ngIf="item.deleted!=1">
+        <h5 class="my-0 font-weight-normal">{{item.itemName}}</h5>
+      </div>
+      <div class="card-body mb-1" *ngIf="item.deleted!=1">
+        <h1 class="card-title pricing-card-title">{{item.itemPrice | currency:'INR'}} 
+          <small *ngIf="item.itemCategory != 'DAIRY'" class="text-muted">/kg</small>
+          <small *ngIf="item.itemCategory == 'DAIRY'" class="text-muted">/Ltr</small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Posted by {{item.farmer.farmerName}}</li>
+          <li>{{item.farmer.farmerLocation}}</li>
+        </ul>
+        <button type="button" class="btn btn-outline-primary mr-2" (click)="addToCart(item)"
+          *ngIf="item.itemQuantity > 0">
+          <svg *ngIf="!added(item)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-cart-plus-fill" viewBox="0 0 16 16">
+            <path
+              d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0z">
+            </path>
+          </svg>
+          <svg *ngIf="added(item)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+            class="bi bi-cart-check" viewBox="0 0 16 16">
+            <path
+              d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z" />
+            <path
+              d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
+          </svg>
+          <span> Add</span>
+        </button>
+        <button type="button" class="btn btn-outline-primary" *ngIf="item.itemQuantity > 0" (click)="switchToCart(item)">Buy Now</button>
+        <span class="text-danger" *ngIf="item.itemQuantity <= 0">Out of Stock!</span>
+        <div></div>
+        <span class="text-danger" *ngIf="item.itemQuantity <= 5 && item.itemQuantity >0 && item.itemCategory != 'DAIRY'">Hurry! Only {{item.itemQuantity}} Kgs left!</span>
+        <span class="text-danger" *ngIf="item.itemQuantity <= 5 && item.itemQuantity >0 && item.itemCategory == 'DAIRY'">Hurry! Only {{item.itemQuantity}} Ltrs left!</span>
+      </div>
+    </div>
+    <div *ngIf="result.length===0" class="mx-auto" style="font-weight: bold;">
+      No items found!
+    </div>
+  </div>
+
+</div>

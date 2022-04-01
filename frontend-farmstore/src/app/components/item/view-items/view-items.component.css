@@ -1,0 +1,22 @@
+.req {
+    display: inline;
+    color: #a94442;
+}
+
+.form-group {
+    margin:0.5rem auto;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+td .btn {
+    margin-right: 3px;
+    margin-bottom: 3px;
+    padding: 1px 6px 3px 6px;
+    font-size: 13px;
+}
+
+th{text-align: center;}
+td{text-align: center;}

@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="/">
+      <img src="../assets/favicon.png" width="30" height="28" class="d-inline-block align-text-top"></a>
+    <strong style="font-size: 20px;">Farmstore</strong>
+  </div>&nbsp;
+  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" *ngIf="getUserType()=='1'"><a class="nav-link" routerLink="farmer">Home</a></li>
+      <li class="nav-item" *ngIf="getUserType()=='1'">
+        <a class="nav-link" routerLink="farmer/profile">Profile</a>
+      </li>
+      <li class="nav-item" *ngIf="getUserType()=='1'">
+        <a class="nav-link" routerLink="add-item">Add Item</a>
+      </li>
+      <li class="nav-item" *ngIf="getUserType()=='1'">
+        <a class="nav-link" routerLink="view-items">View Items</a>
+      </li>
+      <li class="nav-item" *ngIf="getUserType()=='1'">
+        <a class="nav-link" routerLink="view-orderBy-ItemId">Orders</a>
+      </li>
+      <li class="nav-item" *ngIf="getUserType()=='2'"><a class="nav-link" routerLink="supplier">Home</a></li>
+      <li class="nav-item" *ngIf="getUserType()=='2'">
+        <a class="nav-link" routerLink="view-supplier-details">Profile</a>
+      </li>
+      <li class="nav-item" *ngIf="getUserType()=='2'">
+        <a class="nav-link" routerLink="list-supplier-orders">Your Orders</a>
+      </li>
+      <li *ngIf="getUserType()=='2'">
+        <input type="text" name="search" placeholder="Search for items, location..." [(ngModel)]="searchTerm"
+          (keyup)="search($event)" class="form-control" />
+      </li>&nbsp;&nbsp;
+      <li *ngIf="getUserType()=='2'" class="nav-link">Filter By:
+        <select name="category" id="category" name="itemCategory" id="itemCategory"
+          [(ngModel)]="itemCategory" (change)="category(itemCategory)">
+          <option value="" selected>Category</option>
+          <option VALUE="VEGETABLES">VEGETABLES</option>
+          <option VALUE="FRUITS">FRUITS</option>
+          <option VALUE="DAIRY">DAIRY</option>
+          <option VALUE="DAIRYSOLID">DAIRYSOLID</option>
+          <option VALUE="GRAINS">GRAINS</option>
+        </select>
+      </li>
+      <li class="nav-item" *ngIf="getUserType()=='0'"><a class="nav-link" routerLink="admin">Home</a></li>
+      <li class="nav-item" *ngIf="getUserType()=='0'">
+        <a class="nav-link" routerLink="viewfarmer">Farmers</a>
+      </li>
+      <li class="nav-item" *ngIf="getUserType()=='0'">
+        <a class="nav-link" routerLink="viewsupplier">Suppliers</a>
+      </li>
+      <li class="nav-item" *ngIf="getUserType()=='0'">
+        <a class="nav-link" routerLink="view-all-items">Items</a>
+      </li>
+      <!-- <li class="nav-item" *ngIf="getUserType()=='0'">
+        <a class="nav-link" routerLink="view-all-orders">Orders</a>
+      </li> -->
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" *ngIf="getUserType()=='2'">
+        <!-- <button class="btn btn-sm" type="button" routerLink="cart">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cart"
+            viewBox="0 0 16 16">
+            <path
+              d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+          </svg>
+        </button> -->
+        <button routerLink="cart" class="btn btn-sm">
+          <i style="font-size: 25px; color: rgb(65, 65, 226);" class="fa-solid fa-cart-plus"></i>
+          <!-- <div style="font-size: 8px;" class="badge bg-danger">{{totalItem}}</div> -->
+        </button>
+      </li>
+      <!-- <li class="nav-item"><button class="btn btn-sm btn-primary" type="button" routerLink="">Register</button></li>
+      <li class="nav-item"><button class="btn btn-sm btn-primary" type="button" routerLink="">Login</button></li> -->
+      <li class="nav-item" *ngIf="getUser() !=null"><button class="btn btn-sm btn-danger" type="button"
+          routerLink="login">Logout</button></li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>

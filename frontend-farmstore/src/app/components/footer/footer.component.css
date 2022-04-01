@@ -1,0 +1,24 @@
+footer{
+  position: fixed;
+  height: 35px;
+  background-color:rgb(61, 228, 61);
+  padding: 10px;
+  width: 96%;
+  bottom: 0;
+}
+
+h1 {
+    
+  color: white;
+  font-size: 15px !important;
+ 
+}
+@font-face{
+  font-family:Portico Diablo;
+  src: url(../../../assets/Font/Portico.otf);
+}
+.ficon{
+  height: fit-content;
+  color:white !important;
+  margin: 3px;
+}

@@ -1,0 +1,94 @@
++<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<body>
+    <section>
+        <div class="container">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-xl-9">
+                    <form #frm="ngForm" (ngSubmit)="addItem()">
+                        <h1 class="text-black mb-4" style="font-family: fantasy;"> Add Items </h1>
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md ps-5">
+                                        <h6 class="mb-0">Item Name:</h6>
+                                    </div>
+                                    <div class="col-md-9 pe-5">
+                                        <input type="text" class="form-control form-control-lg" required
+                                            [(ngModel)]=item.itemName name="itemName" id="itemName"
+                                            #itemName="ngModel" pattern="^[a-zA-Z]+$" placeholder="Enter Item Name"
+                                            [class.is-invalid]="itemName.invalid && itemName.touched" />
+                                        <div *ngIf="itemName.errors && (itemName.invalid && itemName.touched)">
+                                            <small class="text-danger" *ngIf="itemName.errors.required">Item Name
+                                                cannot be
+                                                empty</small>
+                                            <small class="text-danger" *ngIf="itemName.errors.pattern">Item Name can
+                                                only contain
+                                                alphabets</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="mx-n3">
+                                <div class="row align-items-center">
+                                    <div class="col-md ps-5">
+                                        <h6 class="mb-0">Item Quantity </h6>
+                                    </div>
+                                    <div class="col-md-9 pe-5">
+                                        <input type="number" class="form-control form-control-lg" required
+                                            [(ngModel)]=item.itemQuantity name="itemQuantity" id="itemQuantity"
+                                            #itemQuantity="ngModel" pattern="^[0-9]{10}$"
+                                            [class.is-invalid]="itemQuantity.invalid && itemQuantity.touched" />
+                                            <div *ngIf="itemQuantity.errors && (itemQuantity.invalid && itemQuantity.touched)">
+                                                <small class="text-danger" *ngIf="itemQuantity.errors.required">Quantity
+                                                    cannot be
+                                                    empty</small>
+                                            </div>
+                                    </div>
+                                </div>
+                                <hr class="mx-n3">
+                                <div class="row align-items-center">
+                                    <div class="col-md ps-5">
+                                        <h6 class="mb-0">Item Price</h6>
+                                    </div>
+                                    <div class="col-md-9 pe-5">
+                                        <input type="number" class="form-control form-control-lg" required
+                                            [(ngModel)]=item.itemPrice name="itemPrice" id="itemPrice"
+                                            #itemPrice="ngModel" pattern="^[0-9]{10}$"
+                                            [class.is-invalid]="itemPrice.invalid && itemPrice.touched" />
+                                            <div *ngIf="itemPrice.errors && (itemPrice.invalid && itemPrice.touched)">
+                                                <small class="text-danger" *ngIf="itemPrice.errors.required">Price
+                                                    cannot be
+                                                    empty</small>
+                                                    </div>
+                                    </div>
+                                </div>
+                                <hr class="mx-n3">
+                                <div class="row align-items-center">
+                                    <div class="col-md ps-5">
+                                        <h6 class="mb-0">Item Category </h6>
+                                    </div>
+                                    <div class="col-md-9 pe-5">
+                                        <select class="form-control form-control-lg" required name="itemCategory"
+                                            id="itemCategory" [(ngModel)]=item.itemCategory>
+                                            <option VALUE="VEGETABLES">VEGETABLES</option>
+                                            <option VALUE="FRUITS">FRUITS</option>
+                                            <option VALUE="DAIRY">DAIRY</option>
+                                            <option VALUE="DAIRYSOLID">DAIRYSOLID</option>
+                                            <option VALUE="GRAINS">GRAINS</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <hr class="mx-n3">
+                                <div style="text-align: center;">
+                                    <button type="submit" class="btn btn-primary btn-lg"> Add Item </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

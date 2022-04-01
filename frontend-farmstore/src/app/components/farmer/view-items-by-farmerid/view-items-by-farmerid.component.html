@@ -1,0 +1,38 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link href='//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' rel='stylesheet' />
+
+<button type="button" class="btn btn-primary btn-lg" style="background-color: rgb(14, 14, 187);"
+    (click)="navigateToFarmerHome()"> Back </button>
+<li class="list-group-item" *ngFor="let item1 of itemList">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <!-- Category -->
+                <div class="single category">
+                    <h3 class="side-title">Item</h3>
+                    <ul class="list-unstyled">
+                        <div style="font-family: Monospace">Item Id: <span class="pull-right">{{item1.itemId}}</span>
+                        </div>
+                        <div style="font-family: Monospace">Item Name: <span
+                                class="pull-right">{{item1.itemName}}</span></div>
+                        <div style="font-family: Monospace">Item Quantity: <span
+                                class="pull-right">{{item1.itemQuantity}}</span></div>
+                        <div style="font-family: Monospace">Item Price: <span
+                                class="pull-right">{{item1.itemPrice}}</span></div>
+                        <div style="font-family: Monospace">Item Category: <span
+                                class="pull-right">{{item1.itemCategory}}</span></div>
+                        <br><br>
+                        <button type="button" class="btn btn-primary btn-lg" style="background-color: #1c8312"
+                            (click)="navigateToUpdateItem()">Update</button>
+
+                        <button type="button" class="btn btn-primary btn-lg pull-right"
+                            style="background-color: #ff173c;" (click)="deleteItem()">Delete</button>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</li>

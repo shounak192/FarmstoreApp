@@ -1,0 +1,15 @@
+.req {
+    display: inline;
+    color: #a94442;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+td .btn {
+    margin-right: 3px;
+    margin-bottom: 3px;
+    padding: 1px 6px 3px 6px;
+    font-size: 13px;
+}

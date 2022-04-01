@@ -1,0 +1,46 @@
+<!--   
+<div *ngIf="addOrder.items.length === 0" class="alert alert-info">Your Cart is Empty.</div>
+
+<ul *ngIf="addOrder.items.length > 0" class="list-group">
+  <li class="list-group-item" *ngFor="let item of addOrder.items">
+    <div class="cart-item">
+      <span>{{ item.itemName }}</span> x
+      <span>{{ item.itemQuantity}}</span>:
+      <strong>{{ (item.itemQuantity * item.itemPrice) | currency:'INR' }}</strong>
+    </div>
+  </li>
+<button class="btn"(click)="calcCartTotal()">calculate Total Price</button>
+  <li class="list-group-item active">
+    <strong>Total</strong> {{ cartTotal | currency:'INR' }}
+  </li>
+</ul>
+<button class="btn"(click)="delete(addOrder.orderId)">Delete Order</button> -->
+
+
+      <!-- Items Table Data -->
+<div class="table-responsive p-5">
+  <table class="table table-hover" id="table1" *ngIf="orders.length > 0">
+      <thead class="thead-light">
+          <tr>
+              <th>Order ID</th>
+              <th>Supplier Name</th>
+              <th>Supplier Email</th>
+              <th>Supplier Location</th>
+              <th>Quantity Ordered</th>
+              <th>Order Date</th>
+          </tr>
+      </thead>
+      <tbody *ngFor="let order of orders">
+          <tr *ngFor="let item of order.items">
+              <td *ngIf="item.itemId == itemId">{{order.orderId}}</td>
+              <td *ngIf="item.itemId == itemId">{{order.supplier.supplierName}}</td>
+              <td *ngIf="item.itemId == itemId">{{order.supplier.supplierEmail}}</td>
+              <td *ngIf="item.itemId == itemId">{{order.supplier.supplierLocation}}</td>
+              <td *ngIf="item.itemId == itemId">{{item.itemQuantity}}</td>
+              <td *ngIf="item.itemId == itemId">{{order.orderDate| date:'dd-MM-yyyy' }}</td>
+          </tr>
+      </tbody>
+  </table>
+  <div class="text-muted" *ngIf="orders.length == 0">No Orders yet</div>
+</div>
+ 
